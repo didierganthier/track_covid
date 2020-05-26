@@ -1,0 +1,1 @@
+const String url = 'https://corona.lmao.ninja/v2/countries/Haiti';

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trackcovid/widgets/CirlceImageWithText.dart';
+import 'package:trackcovid/widgets/cirle_image_text.dart';
 import 'package:trackcovid/widgets/styled_button.dart';
 
 class HomeScreen extends StatelessWidget {
