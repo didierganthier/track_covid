@@ -1,9 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_state/flutter_phone_state.dart';
+import 'package:trackcovid/services/calls_and_messages_service.dart';
+import 'package:trackcovid/services/service_locator.dart';
 import 'package:trackcovid/widgets/cirle_image_text.dart';
 import 'package:trackcovid/widgets/styled_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final CallsAndMessagesService _service = locator<CallsAndMessagesService>();
+
+  final String number = '44328401';
+
+  _initiateCall() {
+    if (number?.isNotEmpty == true) {
+      setState(() {
+        FlutterPhoneState.startPhoneCall(number);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -55,9 +76,9 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Are you feeling sick', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.white)),
+                        Text('Êtes-vous malade?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.white)),
                         SizedBox(height: 10.0,),
-                        Text('Any of covid-19 symptoms? please call or sms us immediatly for help.', style: TextStyle(fontSize: 18.0, color: Colors.white)),
+                        Text('Vous ressentez des symptômes? Demandez de l\'aide.', style: TextStyle(fontSize: 18.0, color: Colors.white)),
                         SizedBox(height: 20.0,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,15 +86,17 @@ class HomeScreen extends StatelessWidget {
                             StyledButton(
                               imageName: 'phone.png',
                               textColor: Colors.white,
-                              buttonColor: Colors.redAccent,
-                              buttonText: 'Call Now',
+                              buttonColor: Colors.green,
+                              buttonText: 'Appel',
+                              onTap: () => _initiateCall(),
                             ),
                             StyledButton(
                               imageName: 'sms.png',
                               textColor: Colors.white,
                               buttonColor: Colors.blue,
-                              buttonText: 'SMS Now',
+                              buttonText: 'SMS',
                               iconColor: Colors.white,
+                              onTap: () => _service.sendSms(number),
                             )
                           ],
                         ),
@@ -91,9 +114,9 @@ class HomeScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              CircleImageWithText(text: 'Avoid close contact', imagePath: 'images/images.jpg'),
-              CircleImageWithText(text: 'Wash your hands often', imagePath: 'images/cleanhands.jpg'),
-              CircleImageWithText(text: 'Wear a facemask', imagePath: 'images/facemask.jpg'),
+              CircleImageWithText(text: 'Distance sociale', imagePath: 'images/images.jpg'),
+              CircleImageWithText(text: 'Lavez vous les mains', imagePath: 'images/cleanhands.jpg'),
+              CircleImageWithText(text: 'Portez un masque', imagePath: 'images/facemask.jpg'),
             ],
           ),
           SizedBox(height: 20.0),
@@ -118,9 +141,9 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                         child: Column(
                           children: <Widget>[
-                            Text('Do your own test', style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.bold)),
+                            Text('Faites votre test', style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.bold)),
                             SizedBox(height: 10.0,),
-                            Text('Follow the instructions to do your own test', style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                            Text('Suivez les instructions pour faire le test', style: TextStyle(color: Colors.white, fontSize: 18.0)),
                           ],
                         ),
                         width: 150.0

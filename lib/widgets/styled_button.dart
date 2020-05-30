@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class StyledButton extends StatelessWidget {
 
-  StyledButton({this.imageName, this.buttonText, this.textColor, this.buttonColor, this.iconColor});
+  StyledButton({this.imageName, this.buttonText, this.textColor, this.buttonColor, this.iconColor, this.onTap});
 
   final String imageName;
   final String buttonText;
   final Color buttonColor, textColor, iconColor;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
         height: 50.0,
         width: 145.0,

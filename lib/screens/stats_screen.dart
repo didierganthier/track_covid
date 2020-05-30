@@ -13,7 +13,7 @@ class StatsScreen extends StatefulWidget {
 
 class _StatsScreenState extends State<StatsScreen> {
 
-  int affected = 0, death = 0, recovered = 0, active = 0, serious = 0;
+  int affected = 0, death = 0, recovered = 0, active = 0, serious = 0, todayCases = 0, todayDeaths = 0;
 
 
   void getCoronaData() async {
@@ -30,6 +30,8 @@ class _StatsScreenState extends State<StatsScreen> {
         recovered = coronaData['recovered'];
         active = coronaData['active'];
         serious = coronaData['critical'];
+        todayCases = coronaData['todayCases'];
+        todayDeaths = coronaData['todayDeaths'];
       });
     }
     else
@@ -71,7 +73,7 @@ class _StatsScreenState extends State<StatsScreen> {
                       ],
                     ),
                     SizedBox(height: 30.0),
-                    Text('Statistics', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold)),
+                    Text('Statistiques', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold)),
                     SizedBox(height: 30.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -83,17 +85,17 @@ class _StatsScreenState extends State<StatsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        ReusableCard(color: Colors.orange, cardTitle: 'Affected', cardValue: affected.toString(),gradientColor: Colors.orangeAccent,),
-                        ReusableCard(color: Colors.redAccent, cardTitle: 'Death', cardValue: death.toString(), gradientColor: Colors.pinkAccent,)
+                        ReusableCard(color: Colors.orange, cardTitle: 'Infectés', cardValue: affected.toString(),gradientColor: Colors.orangeAccent,),
+                        ReusableCard(color: Colors.redAccent, cardTitle: 'Morts', cardValue: death.toString(), gradientColor: Colors.pinkAccent,)
                       ],
                     ),
                     SizedBox(height: 30.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        ReusableCardSmall(color: Colors.green, cardTitle: 'Recovered', cardValue: recovered.toString(), gradientColor: Colors.greenAccent,),
-                        ReusableCardSmall(color: Colors.blue, cardTitle: 'Active', cardValue: active.toString(), gradientColor: Colors.lightBlueAccent,),
-                        ReusableCardSmall(color: Colors.deepPurpleAccent, cardTitle: 'Serious', cardValue: serious.toString(), gradientColor: Colors.purpleAccent,),
+                        ReusableCardSmall(color: Colors.green, cardTitle: 'Guéris', cardValue: recovered.toString(), gradientColor: Colors.greenAccent,),
+                        ReusableCardSmall(color: Colors.blue, cardTitle: 'Actifs', cardValue: active.toString(), gradientColor: Colors.lightBlueAccent,),
+                        ReusableCardSmall(color: Colors.deepPurpleAccent, cardTitle: 'Critiques', cardValue: serious.toString(), gradientColor: Colors.purpleAccent,),
                       ],
                     ),
                   ],
@@ -107,7 +109,28 @@ class _StatsScreenState extends State<StatsScreen> {
                       topLeft: Radius.circular(30.0),
                       topRight: Radius.circular(30.0)
                   ),
-                )
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text('Aujourdh\'ui', style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 30.0,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          ReusableCard(color: Colors.orange, cardTitle: 'Infectés', cardValue: todayCases.toString(),gradientColor: Colors.orangeAccent,),
+                          ReusableCard(color: Colors.redAccent, cardTitle: 'Morts', cardValue: todayDeaths.toString(), gradientColor: Colors.pinkAccent,)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           ),

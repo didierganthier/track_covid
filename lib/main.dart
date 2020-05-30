@@ -4,8 +4,13 @@ import 'package:trackcovid/screens/advice_screen.dart';
 import 'package:trackcovid/screens/home_screen.dart';
 import 'package:trackcovid/screens/info_screen.dart';
 import 'package:trackcovid/screens/stats_screen.dart';
+import 'package:trackcovid/services/calls_and_messages_service.dart';
+import 'package:trackcovid/services/service_locator.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  setupLocator();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget{
   @override
@@ -18,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   final _pageOptions = [
     HomeScreen(),
     StatsScreen(),
-    AdviceScreen(),
+    Quizzler(),
     InfoScreen()
   ];
 
@@ -32,10 +37,10 @@ class _MyAppState extends State<MyApp> {
           body: _pageOptions[selectedPage],
           bottomNavigationBar: FancyBottomNavigation(
         tabs: [
-        TabData(iconData: Icons.home, title: "Home"),
-        TabData(iconData: Icons.insert_chart, title: "Stats"),
-        TabData(iconData: Icons.featured_play_list, title: "Advices"),
-        TabData(iconData: Icons.info, title: 'Info')
+        TabData(iconData: Icons.home, title: "Accueil"),
+        TabData(iconData: Icons.insert_chart, title: "Chiffres"),
+        TabData(iconData: Icons.insert_emoticon, title: "Jouer"),
+        TabData(iconData: Icons.info, title: 'Infos')
         ],
         onTabChangedListener: (position) {
           setState(() {
