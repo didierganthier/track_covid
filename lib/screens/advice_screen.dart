@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../quiz_brain.dart';
 
@@ -38,6 +39,8 @@ class _QuizPageState extends State<QuizPage> {
       {
         quizBrain.reset();
         scoreKeeper.clear();
+
+        _onBasicAlertPressed(context);
       }
       else
       {
@@ -158,4 +161,20 @@ class _QuizPageState extends State<QuizPage> {
       ),
     );
   }
+}
+
+_onBasicAlertPressed(context) {
+  Alert(
+      context: context,
+      title: "QUIZZ DONE",
+      desc: "Well done on completing the quizz.",
+      buttons: [
+        DialogButton(
+            child: Text(
+              "COOL",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop())
+      ],
+    ).show();
 }
