@@ -15,28 +15,29 @@ class _StatsScreenState extends State<StatsScreen> {
 
   int affected = 0, death = 0, recovered = 0, active = 0, serious = 0, todayCases = 0, todayDeaths = 0;
 
-
   void getCoronaData() async {
     Response response = await get(url);
 
-    if(response.statusCode == 200)
-    {
-      String data = response.body;
-      var coronaData = jsonDecode(data);
+    if(mounted){
+      if(response.statusCode == 200)
+      {
+        String data = response.body;
+        var coronaData = jsonDecode(data);
 
-      setState(() {
-        affected = coronaData['cases'];
-        death = coronaData['deaths'];
-        recovered = coronaData['recovered'];
-        active = coronaData['active'];
-        serious = coronaData['critical'];
-        todayCases = coronaData['todayCases'];
-        todayDeaths = coronaData['todayDeaths'];
-      });
-    }
-    else
-    {
-      print(response.statusCode);
+        setState(() {
+          affected = coronaData['cases'];
+          death = coronaData['deaths'];
+          recovered = coronaData['recovered'];
+          active = coronaData['active'];
+          serious = coronaData['critical'];
+          todayCases = coronaData['todayCases'];
+          todayDeaths = coronaData['todayDeaths'];
+        });
+      }
+      else
+      {
+        print(response.statusCode);
+      }
     }
   }
 
@@ -49,6 +50,9 @@ class _StatsScreenState extends State<StatsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    getCoronaData();
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(8.0),
@@ -117,7 +121,7 @@ class _StatsScreenState extends State<StatsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Text('Aujourdh\'ui', style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          Text('Aujourd\'hui', style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
                         ],
                       ),
                       SizedBox(height: 30.0,),
