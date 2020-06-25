@@ -32,6 +32,8 @@ dependencies:
   rflutter_alert: ^1.0.3
   flutter_launcher_icons: ^0.7.5
   flutter_launcher_name: ^0.0.1
+  flutter_local_notifications: ^1.4.4+1
+  path_provider: ^1.6.11
 
 dev_dependencies:
   flutter_test:
