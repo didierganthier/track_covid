@@ -16,6 +16,7 @@ class StatsScreen extends StatefulWidget {
 class _StatsScreenState extends State<StatsScreen> {
 
   int affected = 0, death = 0, recovered = 0, active = 0, serious = 0, todayCases = 0, todayDeaths = 0;
+  bool isNotificationsOn = true;
 
   void getCoronaData() async {
     Response response = await get(url);
@@ -45,15 +46,16 @@ class _StatsScreenState extends State<StatsScreen> {
 
   Future _showNotificationWithDefaultSound() async {
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-        'your channel id', 'your channel name', 'your channel description',
+        '1', 'Didier Ganthier', 'Channel of Didier Ganthier',
         importance: Importance.Max, priority: Priority.High);
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
     var platformChannelSpecifics = new NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
+    await flutterLocalNotificationsPlugin.schedule(
       0,
       'StaySafe',
       '$todayCases cas et $todayDeaths morts aujourd\'hui',
+      DateTime.now().add(Duration(hours: 3)),
       platformChannelSpecifics,
       payload: 'Default_Sound',
     );
@@ -64,6 +66,16 @@ class _StatsScreenState extends State<StatsScreen> {
     super.initState();
 
     getCoronaData();
+
+    if(isNotificationsOn){
+      _showNotificationWithDefaultSound();
+    }
+  }
+
+  toggleNotifications(){
+    setState(() {
+      isNotificationsOn = !isNotificationsOn;
+    });
   }
 
   @override
@@ -91,7 +103,7 @@ class _StatsScreenState extends State<StatsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Icon(Icons.short_text, color: Colors.white),
-                        IconButton(icon: Icon(Icons.notifications_none, color: Colors.white), onPressed: _showNotificationWithDefaultSound,)
+                        IconButton(icon: Icon(isNotificationsOn? Icons.notifications_active : Icons.notifications_none, color: Colors.white), onPressed: toggleNotifications)
                       ],
                     ),
                     SizedBox(height: 30.0),
