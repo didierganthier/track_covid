@@ -46,7 +46,7 @@ flutter_icons:
   ios: true
 
 flutter_launcher_name:
-  name: "StaySafe"
+  name: "COVID Info"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

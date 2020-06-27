@@ -43,13 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Icon(Icons.short_text, color: Colors.white),
-                        Icon(Icons.notifications_none, color: Colors.white)
-                      ],
-                    ),
                     SizedBox(height: 30.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               CircleImageWithText(text: 'Distance sociale', imagePath: 'images/images.jpg'),
               CircleImageWithText(text: 'Lavez vous les mains', imagePath: 'images/cleanhands.jpg'),
-              CircleImageWithText(text: 'Portez un masque', imagePath: 'images/facemask.jpg'),
+              CircleImageWithText(text: 'Portez un masque', imagePath: 'images/masked.png'),
             ],
           ),
           SizedBox(height: 20.0),

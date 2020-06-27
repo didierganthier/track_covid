@@ -5,7 +5,6 @@ import 'package:trackcovid/screens/advice_screen.dart';
 import 'package:trackcovid/screens/home_screen.dart';
 import 'package:trackcovid/screens/info_screen.dart';
 import 'package:trackcovid/screens/stats_screen.dart';
-import 'package:trackcovid/services/calls_and_messages_service.dart';
 import 'package:trackcovid/services/service_locator.dart';
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -49,7 +48,7 @@ class _MyAppState extends State<MyApp> {
     showDialog(
       context: context,
       builder: (_) => new AlertDialog(
-        title: Text("StaySafe"),
+        title: Text("COVID Info"),
         content: Text("Stay updated with new COVID-19 stats"),
       )
     );
