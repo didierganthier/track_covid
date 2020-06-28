@@ -82,7 +82,10 @@ class _StatsScreenState extends State<StatsScreen> {
   Widget build(BuildContext context) {
 
     getCoronaData();
-
+    if(isNotificationsOn){
+      _showNotificationWithDefaultSound();
+    }
+    
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(8.0),
