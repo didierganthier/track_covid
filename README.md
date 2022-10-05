@@ -1,6 +1,11 @@
-# trackcovid
+## Covid Tracker
 
-COVID Tracker
+### Description
+> This is a COVID-Tracker reading stats from an API and giving realtime stats on cases around Haïti. It also contains a quizz helping people understand how to protect themselves against COVID. The last section allows people to get in touch with the developer.
+
+## What I used
+- Flutter
+- COVID API
 
 ## Getting Started
 
